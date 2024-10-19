@@ -1,11 +1,14 @@
 from enum import Enum
-
 from pydantic import BaseModel
-
 from fastapi import FastAPI, HTTPException, Path, Query
+import os
+from supabase import create_client, Client
 
 app = FastAPI()
 
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 
 class Category(Enum):
     TOOLS = "tools"
@@ -116,3 +119,5 @@ def delete_item(item_id: int) -> dict[str, Item]:
 
     item = items.pop(item_id)
     return {"deleted": item}
+
+# To run the server, use the following command: uvicorn fast_api_alone:app --reload

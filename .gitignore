@@ -1,0 +1,11 @@
+# Virtual environment
+venv/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Environment variables
+.env
